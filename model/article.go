@@ -5,5 +5,5 @@ type Article struct {
 	Title     string `json:"title"`
 	Content   string `json:"content"`
 	Published string `json:"published"`
-	Author    string `json:"author,omnitempty"`
+	Author    string `json:"author"`
 }

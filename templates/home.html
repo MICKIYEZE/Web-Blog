@@ -4,45 +4,107 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Articles</title>
+
     <style>
         body {
             font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 20px;
         }
 
+        /* Header */
+        .header-container {
+            text-align: center;
+            margin-bottom: 30px;
+            position: relative;
+        }
+
+        .header-container h1 {
+            margin: 0;
+            font-size: 32px;
+        }
+
+        /* Login button top-right */
+        .login-btn {
+            position: absolute;
+            right: 0;
+            top: 0;
+            padding: 10px 18px;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+
+        .login-btn:hover {
+            background-color: #0056b3;
+        }
+
+        /* Article block */
         .article {
-            margin-bottom: 20px;
-            padding: 10px;
-            border: 1px solid #ddd;
-            border-radius: 5px;
+            background: white;
+            max-width: 700px;
+            margin: 20px auto;
+            padding: 25px;
+            border-radius: 15px;
+            border: 1px solid #ccc; /* thin outline */
+            text-align: center;
+            position: relative;
+        }
+
+        /* Article ID top-left */
+        .article-id {
+            position: absolute;
+            top: 10px;
+            left: 15px;
+            font-size: 14px;
+            color: #777;
         }
 
         .article h2 {
             margin: 0;
-            font-size: 20px;
+            font-size: 24px;
         }
 
-        .article p {
-            margin: 5px 0 0;
-        }
         .article a {
             text-decoration: none;
             color: black;
         }
 
+        .article p {
+            margin: 10px 0;
+            font-size: 16px;
+        }
+
+        .no-articles {
+            text-align: center;
+            font-size: 20px;
+            margin-top: 40px;
+            color: #555;
+        }
     </style>
 </head>
 <body>
-<h1>Articles</h1>
+
+<div class="header-container">
+    <h1>↓ Articles ↓</h1>
+    <button class="login-btn" onclick="window.location.href='/login'">Login</button>
+</div>
+
 {{range .}}
 <div class="article">
-    <h2>
-        <a href="/article/{{.ID}}" class="article-link">{{.Title}}</a>
-    </h2>
+    <div class="article-id">ID: {{.ID}}</div>
+
+    <h2><a href="/article/{{.ID}}">{{.Title}}</a></h2>
+    <p>{{.Published}}</p>
     <p>{{.Content}}</p>
-    <p>{{.Date}}</p>
 </div>
 {{else}}
-<p>No articles found.</p>
+<p class="no-articles"><strong>Nothing to Show</strong></p>
 {{end}}
+
 </body>
 </html>
