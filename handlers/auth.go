@@ -6,7 +6,7 @@ import (
 	"html/template"
 	"net/http"
 	"os"
-	"web-blog/handlers/middleware"
+	"github.com/MICKIYEZE/Web-Blog/handlers/middleware"
 )
 
 func hashPassword(pass string) string {

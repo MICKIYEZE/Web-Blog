@@ -1,5 +1,8 @@
-module web-blog
+module github.com/MICKIYEZE/Web-Blog
 
-go 1.25.3
+go 1.22
 
-require github.com/golang-jwt/jwt/v5 v5.3.1 // indirect
+require (
+	github.com/golang-jwt/jwt/v5 v5.3.1
+	github.com/joho/godotenv v1.5.1
+)

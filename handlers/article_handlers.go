@@ -10,8 +10,8 @@ import (
 	"strconv"
 	"strings"
 	"time"
-	"web-blog/handlers/middleware"
-	"web-blog/model"
+	"github.com/MICKIYEZE/Web-Blog/handlers/middleware"
+	"github.com/MICKIYEZE/Web-Blog/model"
 )
 
 func parseTemplate(name string) *template.Template {

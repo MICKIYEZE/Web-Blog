@@ -4,7 +4,7 @@ import (
 	"fmt"
 	"net/http"
 	"os"
-	"web-blog/handlers"
+	"github.com/MICKIYEZE/Web-Blog/handlers"
 
 	"github.com/joho/godotenv"
 )
