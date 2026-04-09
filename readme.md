@@ -1,18 +1,66 @@
-🚀 Overview
+# Personal Go Web Blog (Dockerized)
 
-This project is a lightweight yet powerful web‑blog system that allows administrators to create, edit, and delete posts through a secure dashboard, while regular visitors enjoy a clean interface for browsing articles. It’s ideal for personal blogs, small publications, or learning full‑stack development patterns.
+A lightweight personal blog built in Go, featuring templates, authentication, JWT middleware, and persistent article storage. The entire project runs inside Docker using Docker Compose.
 
-✨ Features
+## 🚀 Technologies Used
+- Go 1.22
+- Docker
+- Docker Compose
+- HTML Templates
+- JWT Authentication
 
-🔐 Admin Dashboard
+## 📦 Project Structure
+articles/            # Blog posts (persisted via Docker volume)
+handlers/            # HTTP handlers and middleware
+templates/           # HTML templates
+main.go              # Application entry point
+Dockerfile
+docker-compose.yml
+.env.example
 
-- Create new posts with title, content, and optional metadata
-- Edit existing posts with a simple, intuitive editor
-- Delete posts instantly
-- Manage all articles from a single, organized dashboard
-- Authentication layer to protect admin-only routes
+## 🔧 Requirements
+- Docker 20+
+- Docker Compose v2+
 
-🌍 User Interface
+## ▶️ Running the Project
 
-- View all published articles in a clean, responsive layout
-- Read individual posts with a focus on typography and readability
+1. Clone the repository
+git clone https://github.com/<your-username>/WEB-BLOG-SUT.git
+cd WEB-BLOG-SUT
+
+2. Create your .env file
+cp .env.example .env
+Edit the values as needed.
+
+3. Build and start the containers
+docker-compose build
+docker-compose up -d
+
+4. Open the application
+http://localhost:8080
+
+## 💾 Persistence
+Articles are stored in a Docker named volume:
+volumes:
+  - blog_articles:/articles
+This ensures your JSON article files survive container restarts.
+
+## ❤️ Health Check
+Docker automatically checks the app every 30 seconds:
+healthcheck:
+  test: ["CMD", "wget", "-qO-", "http://localhost:8080/health"]
+Your Go app must expose /health and return HTTP 200.
+
+## 🔐 Environment Variables
+PORT           Internal port (default: 8080)
+AUTH_USER      Login username
+AUTH_PASS      Login password
+ARTICLES_DIR   Directory for article storage
+JWT_SECRET     Secret key for JWT middleware
+
+## 🛠 Useful Docker Commands
+docker-compose up -d        # Start containers
+docker-compose down         # Stop and remove containers
+docker-compose logs -f      # View logs
+docker-compose ps           # Check container & health status
+docker-compose build        # Rebuild images
